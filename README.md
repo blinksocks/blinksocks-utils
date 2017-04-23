@@ -12,6 +12,24 @@
 
 :wrench: utilities for blinksocks.
 
+## Install
+
+```
+$ yarn
+```
+
+## Test
+
+```
+$ yarn test
+```
+
+## Compile
+
+```
+$ yarn compile
+```
+
 ## License
 
 Apache License 2.0
