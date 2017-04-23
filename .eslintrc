@@ -1,0 +1,26 @@
+{
+  "extends": "babel",
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
+  },
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "no-undef": "off",
+    "max-len": "off",
+    "object-curly-spacing": "off",
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ]
+  }
+}

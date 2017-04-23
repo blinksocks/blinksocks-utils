@@ -1,0 +1,52 @@
+{
+  "name": "blinksocks-utils",
+  "version": "0.0.1",
+  "description": "utilities for blinksocks",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "npm run lint && npm run test:coverage",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint bin src",
+    "compile": "babel src --out-dir lib --minified --ignore spec.js,test.js",
+    "precommit": "npm test"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/lib/"
+    ],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
+  "dependencies": {
+    "ip": "^1.1.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.2",
+    "babel-jest": "^19.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-register": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-config-babel": "^6.0.0",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-flowtype": "^2.32.1",
+    "husky": "^0.13.3",
+    "jest": "^19.0.2"
+  },
+  "repository": {
+    "url": "https://github.com/blinksocks/blinksocks-utils",
+    "type": "git"
+  },
+  "keywords": [
+    "blinksocks",
+    "utilities",
+    "utils"
+  ],
+  "author": "Micooz <micooz@hotmail.com>",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">= 6"
+  }
+}

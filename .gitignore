@@ -1,0 +1,16 @@
+# IDE
+.idea/
+.vscode/
+
+# nodejs
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-error.log
+
+# test
+coverage/
+
+# tar
+*.tgz
