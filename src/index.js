@@ -1,2 +1,2 @@
-export * from './commons';
+export * from './common';
 export * from './advanced-buffer';
