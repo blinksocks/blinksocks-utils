@@ -21,7 +21,8 @@
     "collectCoverage": true
   },
   "dependencies": {
-    "ip": "^1.1.5"
+    "ip": "^1.1.5",
+    "urijs": "^1.18.10"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
