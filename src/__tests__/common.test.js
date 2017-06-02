@@ -1,3 +1,4 @@
+import ip from 'ip';
 import {
   numberToBuffer,
   parseURI,
@@ -65,6 +66,27 @@ describe('parseURI', function () {
       host: Buffer.from('bing.com'),
       port: numberToBuffer(443)
     });
+
+    addr = parseURI('192.168.1.1:443');
+    expect(addr).toMatchObject({
+      type: 1,
+      host: ip.toBuffer('192.168.1.1'),
+      port: numberToBuffer(443)
+    });
+
+    addr = parseURI('https://[::1]:8080');
+    expect(addr).toMatchObject({
+      type: 4,
+      host: ip.toBuffer('::1'),
+      port: numberToBuffer(8080)
+    });
+
+    addr = parseURI('[::1]:443');
+    expect(addr).toMatchObject({
+      type: 4,
+      host: ip.toBuffer('::1'),
+      port: numberToBuffer(443)
+    });
   });
 
 });
@@ -82,10 +104,9 @@ describe('getRandomInt', function () {
 describe('getRandomChunks', function () {
 
   it('should return expected random chunks', function () {
-    const chunks = getRandomChunks([1, 2, 3], 1, 1);
-    expect(chunks[0]).toEqual([1]);
-    expect(chunks[1]).toEqual([2]);
-    expect(chunks[2]).toEqual([3]);
+    const chunks = getRandomChunks([1, 2, 3], 2, 2);
+    expect(chunks[0]).toEqual([1, 2]);
+    expect(chunks[1]).toEqual([3]);
   });
 
 });
@@ -93,10 +114,9 @@ describe('getRandomChunks', function () {
 describe('getChunks', function () {
 
   it('should return expected chunks', function () {
-    const chunks = getChunks([1, 2, 3], 1);
-    expect(chunks[0]).toEqual([1]);
-    expect(chunks[1]).toEqual([2]);
-    expect(chunks[2]).toEqual([3]);
+    const chunks = getChunks([1, 2, 3], 2);
+    expect(chunks[0]).toEqual([1, 2]);
+    expect(chunks[1]).toEqual([3]);
   });
 
 });

@@ -2,6 +2,10 @@ import {AdvancedBuffer} from '../advanced-buffer';
 
 describe('AdvancedBuffer#constructor', function () {
 
+  it('should throw when options is not given', function () {
+    expect(() => new AdvancedBuffer()).toThrow();
+  });
+
   it('should throw when getPacketLength not Function', function () {
     expect(() => new AdvancedBuffer({getPacketLength: null})).toThrow();
   });
