@@ -1,7 +1,7 @@
 import net from 'net';
-import url from 'url';
 import crypto from 'crypto';
 import ip from 'ip';
+import url from 'urijs';
 
 export const ATYP_V4 = 1;
 export const ATYP_DOMAIN = 3;
@@ -37,28 +37,34 @@ export function numberToBuffer(num, len = 2, byteOrder = BYTE_ORDER_BE) {
 }
 
 /**
- * convert an uri to Address
+ * convert a http(s) url to an address with type, host and port
  * @param uri
  * @returns {{type: Number, host: Buffer, port: Buffer}}
  */
 export function parseURI(uri) {
   let _uri = uri;
-  if (_uri.indexOf('http') !== 0 && _uri.indexOf('https') !== 0) {
-    if (_uri.indexOf(':443') !== -1) {
-      // e.g, bing.com:443
-      _uri = `https://${_uri}`;
-    } else {
-      // e.g, bing.com
-      _uri = `http://${_uri}`;
-    }
+  let _port = null;
+
+  if (_uri.startsWith('http://')) {
+    _uri = _uri.substr(7);
+    _port = 80;
   }
-  const {protocol, hostname} = url.parse(_uri);
+
+  if (_uri.startsWith('https://')) {
+    _uri = _uri.substr(8);
+    _port = 443;
+  }
+
+  const parts = {};
+  url.parseHost(_uri, parts);
+
+  const {hostname, port} = parts;
   const addrType = net.isIP(hostname) ? (net.isIPv4(hostname) ? ATYP_V4 : ATYP_V6) : ATYP_DOMAIN;
-  const port = {'http:': 80, 'https:': 443}[protocol];
+
   return {
     type: addrType,
     host: net.isIP(hostname) ? ip.toBuffer(hostname) : Buffer.from(hostname),
-    port: numberToBuffer(port)
+    port: numberToBuffer(port || _port || 80)
   };
 }
 
