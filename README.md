@@ -1,3 +1,7 @@
+----
+> **[DEPRECATED], this repo/project is depreacted and should never be used!**
+----
+
 # blinksocks-utils
 
 [![version](https://img.shields.io/npm/v/blinksocks-utils.svg)](https://www.npmjs.com/package/blinksocks-utils)
